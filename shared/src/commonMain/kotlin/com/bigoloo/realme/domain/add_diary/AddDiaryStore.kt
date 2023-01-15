@@ -6,7 +6,10 @@ import com.bigoloo.realme.ui.add_diary.AddDiaryVewState
 
 class AddDiaryStore(private val diaryRepository: DiaryRepository) :
     BaseStore<AddDiaryVewState, AddDiaryAction>(
-        initialState = AddDiaryVewState(false, isSaved = false),
+        initialState = AddDiaryVewState(
+            false,
+            isSaved = false
+        ),
         reducer = AddDiaryReducer(), middlewares = listOf(
             AddDiaryMiddleware(diaryRepository)
         )

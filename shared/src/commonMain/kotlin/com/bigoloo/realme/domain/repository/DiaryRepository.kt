@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 interface DiaryRepository {
 
     suspend fun addDiary(diary: Diary)
-    fun getDiary(): Flow<List<Diary>>
+    fun getDiaryListFlow(): Flow<List<Diary>>
 }

@@ -12,7 +12,7 @@ class InMemoryDiaryRepository : DiaryRepository {
         diaryList.emit(diaryList.value + diary)
     }
 
-    override fun getDiary(): Flow<List<Diary>> {
+    override fun getDiaryListFlow(): Flow<List<Diary>> {
         return diaryList
     }
 }

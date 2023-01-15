@@ -4,4 +4,7 @@ import kotlinx.serialization.*
 
 
 @Serializable
-data class Diary(@SerialName("mod") val mod: Int)
+data class Diary(
+    @SerialName("mod") val mood: Int,
+    @SerialName("createTimestamp") val createTimestamp: Long
+)

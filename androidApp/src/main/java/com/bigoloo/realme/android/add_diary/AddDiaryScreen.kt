@@ -11,17 +11,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import com.bigoloo.realme.domain.add_diary.AddDiaryAction
 import com.bigoloo.realme.domain.model.Diary
 import org.koin.androidx.compose.get
 
 
 @Composable
-fun AddDiaryScreen(modifier: Modifier, addDiaryViewModel: AddDiaryViewModel = get()) {
+fun AddDiaryScreen(
+    modifier: Modifier,
+    navHostController: NavHostController,
+    addDiaryViewModel: AddDiaryViewModel = get()
+) {
 
     Column(modifier = modifier) {
         Text(text = "Hello User")
         val state = addDiaryViewModel.viewState.collectAsStateWithLifecycle()
+        LaunchedEffect(key1 = state.value.isSaved, block = {
+            if (state.value.isSaved) {
+                navHostController.popBackStack()
+            }
+        })
         Text(text = "Current State :${state.value}")
         Text(text = "Choose Your Current Mood (bad =0 , great =5)")
 
@@ -35,7 +45,14 @@ fun AddDiaryScreen(modifier: Modifier, addDiaryViewModel: AddDiaryViewModel = ge
         }
         Spacer(modifier = modifier.weight(1f))
         Button(onClick = {
-            addDiaryViewModel.dispatch(AddDiaryAction.AddNewDiaryAction(Diary(selectedValueIndex)))
+            addDiaryViewModel.dispatch(
+                AddDiaryAction.AddNewDiaryAction(
+                    Diary(
+                        selectedValueIndex,
+                        System.currentTimeMillis()
+                    )
+                )
+            )
         }) {
             Text(text = "Save")
         }
