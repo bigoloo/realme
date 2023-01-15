@@ -40,6 +40,7 @@ dependencies {
     implementation("androidx.compose.material:material:1.3.1")
     implementation("androidx.activity:activity-compose:1.6.1")
     implementation("io.insert-koin:koin-android:3.3.1")
-    implementation ("io.insert-koin:koin-androidx-compose:3.4.0")
-   implementation("androidx.navigation:navigation-compose:2.5.3")
+    implementation("io.insert-koin:koin-androidx-compose:3.4.0")
+    implementation("androidx.navigation:navigation-compose:2.5.3")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha04")
 }
