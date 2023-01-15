@@ -14,7 +14,6 @@ This application is daily tracker for Habits and Emotional moods
 - Add Habits
 - Add Chart
 - Export documents as CSV
--
 
 ## Tech
 ### Architucure
