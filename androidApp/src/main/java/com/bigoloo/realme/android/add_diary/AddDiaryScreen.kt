@@ -32,19 +32,17 @@ fun AddDiaryScreen(
                 navHostController.popBackStack()
             }
         })
-        Text(text = "Current State :${state.value}")
         Text(text = "Choose Your Current Mood (bad =0 , great =5)")
 
         var selectedValueIndex by remember { mutableStateOf(-1) }
         val moodOption: List<String> by remember {
             mutableStateOf(listOf("0", "1", "2", "3", "4", "5"))
         }
-
         MoodSection(moodOption, selectedValueIndex) {
             selectedValueIndex = it
         }
         Spacer(modifier = modifier.weight(1f))
-        Button(onClick = {
+        Button(modifier = Modifier.fillMaxWidth(), onClick = {
             addDiaryViewModel.dispatch(
                 AddDiaryAction.AddNewDiaryAction(
                     Diary(
