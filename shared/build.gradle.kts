@@ -1,11 +1,15 @@
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
-    kotlin("plugin.serialization") version "1.7.20"
+    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 kotlin {
-    android()
+
+    android {
+        namespace = "com.bigoloo.realme"
+        compileSdk { version = release(36) }
+    }
 
     listOf(
         iosX64(),
@@ -20,9 +24,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3")
-                implementation("io.insert-koin:koin-core:3.3.0")
+                implementation(libs.kotlinx.serialization.json)
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.koin.core)
             }
         }
         val commonTest by getting {
@@ -30,8 +34,6 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting
-        val androidTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -50,14 +52,5 @@ kotlin {
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
         }
-    }
-}
-
-android {
-    namespace = "com.bigoloo.realme"
-    compileSdk = 33
-    defaultConfig {
-        minSdk = 24
-        targetSdk = 33
     }
 }

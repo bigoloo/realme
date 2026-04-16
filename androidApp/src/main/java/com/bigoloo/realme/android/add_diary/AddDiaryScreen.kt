@@ -2,9 +2,9 @@ package com.bigoloo.realme.android.add_diary
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.selection.selectable
-import androidx.compose.material.Button
-import androidx.compose.material.RadioButton
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -14,14 +14,14 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.bigoloo.realme.domain.add_diary.AddDiaryAction
 import com.bigoloo.realme.domain.model.Diary
-import org.koin.androidx.compose.get
+import org.koin.compose.viewmodel.koinViewModel
 
 
 @Composable
 fun AddDiaryScreen(
     modifier: Modifier,
     navHostController: NavHostController,
-    addDiaryViewModel: AddDiaryViewModel = get()
+    addDiaryViewModel: AddDiaryViewModel = koinViewModel()
 ) {
 
     Column(modifier = modifier) {
@@ -34,7 +34,7 @@ fun AddDiaryScreen(
         })
         Text(text = "Choose Your Current Mood (bad =0 , great =5)")
 
-        var selectedValueIndex by remember { mutableStateOf(-1) }
+        var selectedValueIndex by remember { mutableIntStateOf(-1) }
         val moodOption: List<String> by remember {
             mutableStateOf(listOf("0", "1", "2", "3", "4", "5"))
         }
